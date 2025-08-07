@@ -1,0 +1,94 @@
+hyperlocal-skill-app/
+│
+├── client/                   # Frontend (Vite + React + Tailwind + ShadCN)
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/           # Images, logos
+│   │   ├── components/       # Shared UI components
+│   │   ├── features/         # Feature-based folders (Redux slices + pages)
+│   │   │   ├── auth/
+│   │   │   ├── bookings/
+│   │   │   ├── dashboard/
+│   │   │   ├── providers/
+│   │   │   ├── customers/
+│   │   │   ├── admin/
+│   │   │   ├── chat/
+│   │   │   └── payments/
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── layouts/          # Layout components (Header, Footer, Sidebar)
+│   │   ├── pages/            # Page routes
+│   │   ├── router/           # React Router v6 config
+│   │   ├── services/         # API calls (Axios logic)
+│   │   ├── store/            # Redux Toolkit store setup
+│   │   ├── utils/            # Helper functions
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── .env
+│   ├── vite.config.ts
+│   └── tailwind.config.ts
+│
+├── server/                   # Backend (Node.js + Express + MongoDB)
+│   ├── config/               # DB, cloudinary, Razorpay configs
+│   ├── controllers/          # Route logic
+│   ├── middlewares/          # Auth, error handler, role checker, multer, rate limiter
+│   ├── models/               # Mongoose schemas
+│   ├── routes/               # Express routes
+│   ├── services/             # Business logic (e.g. PDF, mail, payment)
+│   ├── sockets/              # Socket.IO logic
+│   ├── utils/                # Helper functions
+│   ├── validators/           # Joi or express-validator schemas
+│   ├── app.js                # Express app config
+│   ├── server.js             # Entry point
+│   ├── .env
+│   └── package.json
+│
+├── shared/                  # Shared files (if any, like types, constants)
+│   └── constants/
+│
+├── docs/                    # API docs (Postman collection, Swagger, architecture notes)
+│
+├── .github/                 # GitHub Actions workflows
+│   └── workflows/
+│       └── ci-cd.yml
+│
+├── .eslintrc.json           # ESLint config
+├── .prettierrc              # Prettier config
+├── .gitignore
+├── README.md
+├── package.json             # Root script manager (optional, if using workspaces)
+└── turbo.json / nx.json     # Monorepo config (optional: Turborepo or Nx)
+
+
+
+
+bookings/
+├── BookingList.tsx
+├── BookingForm.tsx
+├── bookingSlice.ts         # Redux Toolkit slice
+├── bookingAPI.ts           # Axios API functions
+├── bookingTypes.ts         # TypeScript interfaces
+├── index.ts
+
+
+
+
+middlewares/
+├── authMiddleware.js        # JWT auth check
+├── roleMiddleware.js        # Role-based access
+├── errorMiddleware.js       # Global error handler
+├── rateLimiter.js           # Limit login attempts
+├── upload.js                # Multer config for file uploads
+
+
+
+
+routes/
+├── authRoutes.js
+├── bookingRoutes.js
+├── userRoutes.js
+├── providerRoutes.js
+├── paymentRoutes.js
+├── chatRoutes.js
+├── invoiceRoutes.js
+├── adminRoutes.js
