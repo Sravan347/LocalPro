@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const connectedDB = require('./DB/connection');
+const authRoutes = require('./routes/authRoute');
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,9 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use('/api/v1/auth',authRoutes)
 
 
 
