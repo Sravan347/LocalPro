@@ -1,3 +1,4 @@
+// controllers/authController.js
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 const { body, validationResult } = require('express-validator');
@@ -12,11 +13,13 @@ const register = async (req, res) => {
 
     const user = await User.create({ name, email, password, role });
 
+    // Set token as cookie
+    generateToken(res, user._id);
+
     res.status(201).json({
       _id: user._id,
       name: user.name,
       role: user.role,
-      token: generateToken(user._id),
     });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
@@ -33,18 +36,20 @@ const login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
+    // Set token as cookie
+    generateToken(res, user._id);
+
     res.json({
       _id: user._id,
       name: user.name,
       role: user.role,
-      token: generateToken(user._id),
     });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
 
-// ✅ Validation middleware
+// ✅ Validation middleware stays the same
 const validateRegister = [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email is required'),
