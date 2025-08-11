@@ -1,6 +1,6 @@
 // middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/User');
 
 const protect = async (req, res, next) => {
   const token = req.cookies?.jwt; // <-- Read from cookie
@@ -21,4 +21,11 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+const providerOnly = (req, res, next) => {
+  if (req.user.role !== "provider") {
+    return res.status(403).json({ message: "Access denied" });
+  }
+  next();
+};
+
+module.exports = { protect , providerOnly };
